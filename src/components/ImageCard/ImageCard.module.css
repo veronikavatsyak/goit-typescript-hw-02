@@ -1,0 +1,28 @@
+.galleryImg {
+  display: block;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border: 1px solid black;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+}
+.user {
+  display: block;
+  margin: 0 auto;
+}
+.thumb {
+  border: 1px solid black;
+  border-top: none;
+  background-color: aliceblue;
+  padding: 8px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
