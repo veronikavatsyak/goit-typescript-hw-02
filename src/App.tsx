@@ -19,24 +19,24 @@ const App = () => {
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
   const [modalImage, setModalImage] = useState<ModalImage | null>(null);
 
-  const handleSetQuery = (newQuery: string): void => {
+  const handleSetQuery = (newQuery: string) => {
     setQuery(newQuery);
     setImages([]);
     setPage(1);
   };
 
-  const openModal = (imageUrl: string, imageAlt: string): void => {
+  const openModal = (imageUrl: string, imageAlt: string) => {
     setModalImage({ url: imageUrl, alt: imageAlt });
     setModalIsOpen(true);
   };
 
-  const closeModal = (): void => {
+  const closeModal = () => {
     setModalIsOpen(false);
     setModalImage(null);
   };
 
   useEffect(() => {
-    const getData = async (): Promise<void> => {
+    const getData = async () => {
       if (!query) return;
 
       try {
@@ -55,7 +55,7 @@ const App = () => {
     getData();
   }, [query, page]);
 
-  const handleLoadMore = (): void => {
+  const handleLoadMore = () => {
     setPage((prev) => prev + 1);
   };
 
