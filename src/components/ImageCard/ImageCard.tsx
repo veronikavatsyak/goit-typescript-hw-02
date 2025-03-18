@@ -1,5 +1,11 @@
 import s from "./ImageCard.module.css";
-const ImageCard = ({ image, openModal }) => {
+import React, { FC } from "react";
+import { Image } from "../../types";
+interface ImageCardProps {
+  image: Image;
+  openModal: (imageUrl: string, imageAlt: string) => void;
+}
+const ImageCard: FC<ImageCardProps> = ({ image, openModal }) => {
   const { alt_description, urls, likes, user } = image;
 
   return (

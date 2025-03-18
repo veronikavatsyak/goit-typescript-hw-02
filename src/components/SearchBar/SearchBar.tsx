@@ -1,16 +1,21 @@
 import toast from "react-hot-toast";
-import { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import s from "./SearchBar.module.css";
-const SearchBar = ({ onSubmit }) => {
-  const [value, setValue] = useState("");
-  const handleSubmit = (e) => {
+import { FC } from "react";
+
+interface OnSubmit {
+  onSubmit: (newQuery: string) => void;
+}
+const SearchBar: FC<OnSubmit> = ({ onSubmit }) => {
+  const [value, setValue] = useState<string>("");
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (value.trim() === "") {
       toast.error("The field cannot be empty!");
       return;
     }
     onSubmit(value);
-    e.target.reset();
+    setValue("");
   };
   return (
     <header>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
 import Loader from "./components/Loader/Loader";
@@ -7,34 +7,36 @@ import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 import fetchImages from "./services/api";
 import "./App.css";
+import { Image } from "./types";
+import { ModalImage } from "./types";
 
 const App = () => {
-  const [query, setQuery] = useState("");
-  const [images, setImages] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [isError, setIsError] = useState(false);
-  const [page, setPage] = useState(1);
-  const [modalIsOpen, setModalIsOpen] = useState(false);
-  const [modalImage, setModalImage] = useState(null);
+  const [query, setQuery] = useState<string>("");
+  const [images, setImages] = useState<Image[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isError, setIsError] = useState<boolean>(false);
+  const [page, setPage] = useState<number>(1);
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false);
+  const [modalImage, setModalImage] = useState<ModalImage | null>(null);
 
-  const handleSetQuery = (newQuery) => {
+  const handleSetQuery = (newQuery: string): void => {
     setQuery(newQuery);
     setImages([]);
     setPage(1);
   };
 
-  const openModal = (imageUrl, imageAlt) => {
+  const openModal = (imageUrl: string, imageAlt: string): void => {
     setModalImage({ url: imageUrl, alt: imageAlt });
     setModalIsOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setModalIsOpen(false);
     setModalImage(null);
   };
 
   useEffect(() => {
-    const getData = async () => {
+    const getData = async (): Promise<void> => {
       if (!query) return;
 
       try {
@@ -53,7 +55,7 @@ const App = () => {
     getData();
   }, [query, page]);
 
-  const handleLoadMore = () => {
+  const handleLoadMore = (): void => {
     setPage((prev) => prev + 1);
   };
 

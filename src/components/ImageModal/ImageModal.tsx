@@ -1,5 +1,7 @@
 import { useEffect } from "react";
+import React from "react";
 import Modal from "react-modal";
+import { FC } from "react";
 const customStyles = {
   content: {
     top: "50%",
@@ -15,10 +17,20 @@ const customStyles = {
 };
 
 Modal.setAppElement("#root");
-
-const ImageModal = ({ isOpen, closeModal, imageUrl, imageAlt }) => {
+interface ImageModalProps {
+  isOpen: boolean;
+  closeModal: () => void;
+  imageUrl: string;
+  imageAlt: string;
+}
+const ImageModal: FC<ImageModalProps> = ({
+  isOpen,
+  closeModal,
+  imageUrl,
+  imageAlt,
+}) => {
   useEffect(() => {
-    const handleEsc = (e) => {
+    const handleEsc = (e: KeyboardEvent) => {
       if (e.key === "Escape") {
         closeModal();
       }
